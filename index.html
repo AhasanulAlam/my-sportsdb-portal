@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Sports Portal</title>
+
+  <!-- Bootstrap CSS local connection -->
+  <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+
+  <!-- Bootstrap CSS CDN link -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- self defined CSS -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Font awesome CDN-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <header>
+    <!-- Nav Section -->
+    <section class="nav-container ">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary container">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="">
+            <div class="my-logo">
+              <img src="./images/my_logo.png" alt="">
+            </div>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Players</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Groups</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">About Us</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <button class="btn btn-outline-success" type="submit">Login</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <!-- search input Section -->
+    <section class="search-container container">
+      <div class="input-search-section my-5" id="input-search-section">
+        <div>
+          <form class="row g-3">
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="inputSearch" placeholder="Find your favorite player.">
+            </div>
+            <div class="col-md-4">
+              <button onclick="loadPlayerByName()" type="button" class="btn btn-warning text-white">Search</button>
+            </div>
+          </form>
+          <div id="error-display" class="error-display"></div>
+        </div>
+      </div>
+
+    </section>
+  </header>
+
+  <main>
+    <div class="main-container container d-flex flex-md-row flex-column-reverse justify-content-between align-items-start">
+      <div id="players-container" class="players-container d-flex justify-content-around align-items-start flex-wrap gap-2 w-75">
+      </div>
+
+      <div id="cart-container" class="cart-container text-center shadow-lg sticky-top">
+        <h4 class="position-relative p-1">---: Group Members<span id="cart-count"
+            class="position-absolute top-75 start-100 translate-middle badge rounded-pill bg-warning">0</span> :---
+        </h4>
+        <hr />
+        <div id="cart-main-container" class="cart-main-container">
+          <!-- cart element here. -->
+        </div>
+        <hr />
+        <div id="cart-error-display" class="cart-error-display"></div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button onclick="clearModalData()" type="button" class="btn-close" data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div id="modal-body-div" class="modal-body">
+
+          </div>
+          <!-- <div class="modal-footer">
+            <button onclick="clearModalData()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button onclick="handleAddToCart()" type="button" class="btn btn-primary"  data-bs-dismiss="modal">Buy Now</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="card-footer ">
+    <div class="footer-container bg-body-secondary text-center mt-3 py-3">
+      <p class="text-secondary">Copyright © 2024 My Sportsdb Portal</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap script local connection -->
+  <script src="./bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+  <script src="./bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+
+  <!-- Bootstrap CDN Script connection -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+
+  <!-- self defined Script file -->
+  <script src="./app.js"></script>
+</body>
+
+</html>
